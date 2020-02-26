@@ -8,6 +8,8 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
 @Mod(modid = SimpleSprint.MOD_ID, name = SimpleSprint.MOD_NAME, version = SimpleSprint.VERSION)
@@ -20,9 +22,10 @@ public class SimpleSprint {
 
   // The instance of SimpleSprint.
   private static SimpleSprint instance;
+  public static Logger LOGGER = LogManager.getLogger(MOD_ID);
 
   // A list of KeyBindings for use in the mod.
-  public final KeyBinding[] keyBindings = new KeyBinding[0];
+  public final KeyBinding[] keyBindings = new KeyBinding[1];
 
   @EventHandler
   public void onPreInit(FMLPreInitializationEvent event) {
