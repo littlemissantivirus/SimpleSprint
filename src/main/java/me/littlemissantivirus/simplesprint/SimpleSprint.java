@@ -1,6 +1,7 @@
 package me.littlemissantivirus.simplesprint;
 
 import me.littlemissantivirus.simplesprint.events.EventKey;
+import me.littlemissantivirus.simplesprint.events.EventRender;
 import me.littlemissantivirus.simplesprint.events.EventTick;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,7 +26,7 @@ public class SimpleSprint {
   public static Logger LOGGER = LogManager.getLogger(MOD_ID);
 
   // A list of KeyBindings for use in the mod.
-  public final KeyBinding[] keyBindings = new KeyBinding[1];
+  public final KeyBinding[] keyBindings = new KeyBinding[2];
 
   @EventHandler
   public void onPreInit(FMLPreInitializationEvent event) {
@@ -37,8 +38,10 @@ public class SimpleSprint {
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new EventKey());
     MinecraftForge.EVENT_BUS.register(new EventTick());
+    MinecraftForge.EVENT_BUS.register(new EventRender());
 
     keyBindings[0] = new KeyBinding("key.simplesprint.sprint", Keyboard.KEY_V, MOD_NAME);
+    keyBindings[1] = new KeyBinding("key.simplesprint.sneak", Keyboard.KEY_B, MOD_NAME);
 
     for (KeyBinding keyBinding : keyBindings) {
       ClientRegistry.registerKeyBinding(keyBinding);
@@ -48,8 +51,9 @@ public class SimpleSprint {
   // Variables for the mod.
   public static class Settings {
     public static boolean SPRINT;
-    // Will reimplement at a later time.
-    // public static boolean SNEAK;
+    public static String SPRINT_MSG = "&aSprint enabled";
+    public static boolean SNEAK;
+    public static String SNEAK_MSG = "&aSneak enabled";
   }
 
   public static SimpleSprint getInstance() {
